@@ -1,0 +1,127 @@
+/* Featured Projects */
+.featured-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+.featured-card {
+  display: flex;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+}
+.featured-accent {
+  width: 4px;
+  flex-shrink: 0;
+  border-radius: 4px 0 0 4px;
+}
+.featured-content {
+  padding: 2rem 2.5rem;
+  flex: 1;
+}
+.featured-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
+}
+.featured-title {
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+.featured-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+.featured-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  max-width: 700px;
+}
+.featured-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+.featured-links {
+  display: flex;
+  gap: 1rem;
+}
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  transition: all var(--transition-fast);
+}
+.project-link:hover {
+  color: var(--accent-cyan);
+  transform: translateY(-1px);
+}
+
+/* Other Projects */
+.other-heading {
+  text-align: center;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+}
+.other-projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+.other-card {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+.other-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.other-icon {
+  font-size: 1.5rem;
+}
+.other-link {
+  color: var(--text-dim);
+  font-size: 1.2rem;
+  transition: color var(--transition-fast);
+  text-decoration: none;
+}
+.other-link:hover {
+  color: var(--accent-cyan);
+}
+.other-card h4 {
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+.other-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+}
+.other-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 1rem;
+}
+.other-tech {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+}

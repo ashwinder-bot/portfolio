@@ -1,0 +1,105 @@
+.exp-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2rem;
+}
+.exp-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-left: 2px solid var(--border-subtle);
+}
+.exp-tab {
+  position: relative;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  text-align: left;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.exp-tab:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.02);
+}
+.exp-tab.active {
+  color: var(--text-primary);
+  background: rgba(0, 255, 213, 0.04);
+}
+.tab-indicator {
+  position: absolute;
+  left: -2px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+.exp-tab.active .tab-indicator {
+  opacity: 1;
+  box-shadow: 0 0 10px currentColor;
+}
+.exp-content {
+  padding: 2rem;
+  animation: fadeSlideIn 0.3s ease;
+}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.exp-header h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.exp-period {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+.exp-details {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+.exp-details li {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.bullet {
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  font-size: 1rem;
+}
+.exp-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .exp-layout {
+    grid-template-columns: 1fr;
+  }
+  .exp-tabs {
+    flex-direction: row;
+    border-left: none;
+    border-bottom: 2px solid var(--border-subtle);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab-indicator {
+    left: 0;
+    top: auto;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+  }
+}
