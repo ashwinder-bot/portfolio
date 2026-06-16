@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import './Projects.css';
 
@@ -94,6 +94,28 @@ const filters = [
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
+  const sectionRef = useRef(null);
+
+  // Re-observe reveal elements when filter changes so new cards animate in
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
+    );
+
+    const els = sectionRef.current.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+    els.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [activeFilter]);
 
   const filtered = activeFilter === 'all'
     ? projects
@@ -105,7 +127,7 @@ const Projects = () => {
   const others = isAllView ? filtered.filter(p => !p.featured) : filtered;
 
   return (
-    <section id="projects">
+    <section id="projects" ref={sectionRef}>
       <div className="container">
         <div className="section-header reveal">
           <p className="section-label">Projects</p>
