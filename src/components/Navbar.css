@@ -38,23 +38,33 @@
 .nav-logo {
   text-decoration: none;
   font-family: var(--font-mono);
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 0.5rem;
   transition: all var(--t-fast);
+  letter-spacing: -0.01em;
 }
 .nav-logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
-.logo-bracket {
-  color: var(--text-dim);
-  font-weight: 300;
-  font-size: 1.8rem;
+.nav-logo:hover .logo-dot {
+  box-shadow: 0 0 12px var(--accent-cyan), 0 0 24px rgba(0, 255, 213, 0.2);
+  transform: scale(1.2);
+}
+.logo-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gradient-main);
+  flex-shrink: 0;
+  transition: all var(--t-fast) var(--ease-spring);
+  box-shadow: 0 0 8px rgba(0, 255, 213, 0.3);
 }
 .logo-name {
-  font-size: 1.35rem;
+  color: var(--text-primary);
+  font-size: 1.1rem;
 }
 
 /* — Nav Links — */
