@@ -29,7 +29,7 @@ const aboutCards = [
   },
   {
     icon: <FaRocket />,
-    title: 'DevOps',
+    title: 'DevOps & Infra',
     desc: 'Docker · Prometheus · Grafana · Loki · CI/CD',
     color: '#f97316',
   },
@@ -47,7 +47,7 @@ const About = () => {
       <div className="container">
         <div className="section-header reveal">
           <p className="section-label">About</p>
-          <h2 className="section-title">Who I Am</h2>
+          <h2 className="section-title">The Mind Behind the Code</h2>
         </div>
 
         <div className="about-layout">
@@ -55,25 +55,25 @@ const About = () => {
             <div className="about-terminal">
               <div className="about-terminal-bar mono">
                 <span className="about-terminal-dot"></span>
-                ~/ashwinder/about.md
+                ~/ashwinder/README.md
               </div>
               <div className="about-terminal-body">
                 <p>
-                  I'm a software engineer who lives at the intersection of{' '}
-                  <span className="highlight">backend systems</span> and{' '}
+                  I'm a software engineer who operates at the intersection of{' '}
+                  <span className="highlight">backend architecture</span> and{' '}
                   <span className="highlight">artificial intelligence</span>.
-                  I don't just write code — I architect solutions that handle real-world scale.
+                  I don't chase trends — I build systems that <em>endure</em>.
                 </p>
                 <p>
-                  From shipping RAG pipelines processing 100+ tender documents at Cognecto,
-                  to building real-time carpooling backends, to training computer vision models
-                  for safety compliance — I've consistently delivered{' '}
-                  <span className="highlight">production-grade systems</span> across startups and internships.
+                  Whether it's shipping a RAG pipeline that dissects 100+ tender documents in seconds,
+                  engineering real-time carpooling backends with sub-300ms latency,
+                  or training computer vision models that protect workers on industrial sites
+                  — I consistently deliver <span className="highlight">software that matters</span>.
                 </p>
                 <p>
-                  My toolkit spans the full stack: Python/FastAPI on the backend,
-                  React/Next.js on the frontend, Docker for containerization,
-                  and Prometheus/Grafana for keeping it all observable.
+                  My philosophy is simple: understand the problem deeply,
+                  architect for scale, and execute with precision. Every line of code
+                  I write is production-bound.
                 </p>
               </div>
             </div>

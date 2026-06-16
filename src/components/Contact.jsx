@@ -11,11 +11,12 @@ const Contact = () => {
           <div className="contact-header reveal">
             <p className="section-label" style={{ justifyContent: 'center' }}>Contact</p>
             <h2 className="contact-title">
-              Let's Build<br />
-              <span className="gradient-text">Something Together</span>
+              Got a Vision?<br />
+              <span className="gradient-text">Let's Engineer It.</span>
             </h2>
             <p className="contact-desc">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+              Whether it's an AI-powered product, a scalable backend, or a full-stack platform
+              — I'm always open to collaborating on ideas worth building.
             </p>
           </div>
 
@@ -53,7 +54,7 @@ const Contact = () => {
           <div className="contact-cta reveal" style={{ transitionDelay: '0.3s' }}>
             <a href="mailto:singhashwinder19@gmail.com" className="btn btn-primary">
               <FaEnvelope />
-              Say Hello
+              Start a Conversation
             </a>
           </div>
         </div>
