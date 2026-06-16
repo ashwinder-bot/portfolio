@@ -11,6 +11,7 @@ const skillCategories = [
       { name: 'TypeScript', level: 85 },
       { name: 'Java', level: 80 },
       { name: 'C++', level: 78 },
+      { name: 'SQL', level: 88 },
     ],
   },
   {
@@ -34,8 +35,19 @@ const skillCategories = [
       { name: 'OpenAI API', level: 90 },
       { name: 'Scikit-learn', level: 88 },
       { name: 'XGBoost', level: 85 },
-      { name: 'PyTorch', level: 78 },
+      { name: 'PyTorch', level: 82 },
       { name: 'Pandas/NumPy', level: 92 },
+    ],
+  },
+  {
+    title: 'Computer Vision',
+    icon: '👁',
+    skills: [
+      { name: 'YOLOv8', level: 88 },
+      { name: 'OpenCV', level: 90 },
+      { name: 'SAM (Segment Anything)', level: 80 },
+      { name: 'CNN Architectures', level: 85 },
+      { name: 'Object Detection', level: 88 },
     ],
   },
   {
@@ -45,12 +57,12 @@ const skillCategories = [
       { name: 'PostgreSQL', level: 88 },
       { name: 'MongoDB', level: 85 },
       { name: 'ChromaDB', level: 82 },
-      { name: 'SQLite', level: 80 },
       { name: 'Supabase', level: 85 },
+      { name: 'SQLite', level: 80 },
     ],
   },
   {
-    title: 'DevOps & Observability',
+    title: 'DevOps',
     icon: '🔧',
     skills: [
       { name: 'Docker', level: 90 },
@@ -60,6 +72,13 @@ const skillCategories = [
       { name: 'Loki/Promtail', level: 80 },
     ],
   },
+];
+
+const otherSkills = [
+  'REST APIs', 'Microservices', 'DSA', 'OOP', 'Multithreading',
+  'Prompt Engineering', 'Semantic Search', 'CI/CD', 'Vercel', 'Render',
+  'Google Colab', 'TailwindCSS', 'Streamlit', 'MLOps', 'DBSCAN',
+  'Firebase', 'JWT Auth', 'WebSockets',
 ];
 
 const Skills = () => {
@@ -74,7 +93,7 @@ const Skills = () => {
           <p className="section-desc">Technologies and tools I use to bring ideas to production.</p>
         </div>
 
-        <div className="skills-layout reveal" style={{ transitionDelay: '0.2s' }}>
+        <div className="skills-layout reveal" style={{ transitionDelay: '0.15s' }}>
           {/* Category Chips */}
           <div className="skill-chips">
             {skillCategories.map((cat, index) => (
@@ -84,28 +103,28 @@ const Skills = () => {
                 onClick={() => setActiveCategory(index)}
               >
                 <span className="chip-icon">{cat.icon}</span>
-                {cat.title}
+                <span>{cat.title}</span>
               </button>
             ))}
           </div>
 
           {/* Skill Bars */}
-          <div className="skill-bars glass-card" key={activeCategory}>
-            <h3 className="skill-bars-title">
-              <span>{skillCategories[activeCategory].icon}</span>
-              {skillCategories[activeCategory].title}
-            </h3>
-            <div className="bars-list">
+          <div className="skill-panel glass-card" key={activeCategory}>
+            <div className="skill-panel-header">
+              <span className="skill-panel-icon">{skillCategories[activeCategory].icon}</span>
+              <h3>{skillCategories[activeCategory].title}</h3>
+            </div>
+            <div className="skill-list">
               {skillCategories[activeCategory].skills.map((skill, idx) => (
-                <div key={idx} className="bar-item" style={{ animationDelay: `${idx * 0.08}s` }}>
-                  <div className="bar-header">
-                    <span className="bar-name mono">{skill.name}</span>
-                    <span className="bar-percent mono">{skill.level}%</span>
+                <div key={idx} className="skill-item" style={{ animationDelay: `${idx * 0.06}s` }}>
+                  <div className="skill-info">
+                    <span className="skill-name mono">{skill.name}</span>
+                    <span className="skill-level mono">{skill.level}%</span>
                   </div>
-                  <div className="bar-track">
+                  <div className="skill-track">
                     <div
-                      className="bar-fill"
-                      style={{ width: `${skill.level}%`, animationDelay: `${idx * 0.1}s` }}
+                      className="skill-fill"
+                      style={{ width: `${skill.level}%`, animationDelay: `${idx * 0.08}s` }}
                     ></div>
                   </div>
                 </div>
@@ -115,11 +134,11 @@ const Skills = () => {
         </div>
 
         {/* Skill Cloud */}
-        <div className="skill-cloud reveal" style={{ transitionDelay: '0.4s' }}>
-          {['REST APIs', 'Microservices', 'DSA', 'OOP', 'Multithreading', 'Prompt Engineering', 
-            'Semantic Search', 'CI/CD', 'Vercel', 'Render', 'Google Colab', 'VS Code',
-            'TailwindCSS', 'Streamlit'].map((skill, idx) => (
-            <span key={idx} className="cloud-tag">{skill}</span>
+        <div className="skill-cloud reveal" style={{ transitionDelay: '0.3s' }}>
+          {otherSkills.map((skill, idx) => (
+            <span key={idx} className="cloud-tag" style={{ animationDelay: `${idx * 0.03}s` }}>
+              {skill}
+            </span>
           ))}
         </div>
       </div>

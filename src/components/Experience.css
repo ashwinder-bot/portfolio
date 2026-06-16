@@ -1,105 +1,137 @@
-.exp-layout {
-  display: grid;
-  grid-template-columns: 200px 1fr;
+/* ========= EXPERIENCE TIMELINE ========= */
+.timeline {
+  position: relative;
+  padding-left: 3rem;
+}
+
+/* — Vertical Line — */
+.timeline-line {
+  position: absolute;
+  left: 14px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent-cyan), var(--accent-purple), transparent);
+  border-radius: 2px;
+  opacity: 0.25;
+}
+
+/* — Timeline Item — */
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+  display: flex;
   gap: 2rem;
 }
-.exp-tabs {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  border-left: 2px solid var(--border-subtle);
+.timeline-item:last-child {
+  margin-bottom: 0;
 }
-.exp-tab {
-  position: relative;
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  text-align: left;
-  padding: 0.75rem 1.25rem;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-.exp-tab:hover {
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.02);
-}
-.exp-tab.active {
-  color: var(--text-primary);
-  background: rgba(0, 255, 213, 0.04);
-}
-.tab-indicator {
+
+/* — Timeline Node (dot on the line) — */
+.timeline-node {
   position: absolute;
-  left: -2px;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  border-radius: 2px;
-  opacity: 0;
-  transition: opacity var(--transition-fast);
+  left: -3rem;
+  top: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
 }
-.exp-tab.active .tab-indicator {
-  opacity: 1;
-  box-shadow: 0 0 10px currentColor;
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--node-color, var(--accent-cyan));
+  box-shadow: 0 0 12px var(--node-color, var(--accent-cyan)), 0 0 24px rgba(0, 255, 213, 0.15);
+  border: 2px solid var(--bg-void);
+  transition: transform var(--t-fast) var(--ease-spring);
 }
-.exp-content {
+.timeline-item:hover .timeline-dot {
+  transform: scale(1.4);
+  box-shadow: 0 0 20px var(--node-color, var(--accent-cyan)), 0 0 40px rgba(0, 255, 213, 0.2);
+}
+
+/* — Content Card — */
+.timeline-content {
+  flex: 1;
   padding: 2rem;
-  animation: fadeSlideIn 0.3s ease;
 }
-@keyframes fadeSlideIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.timeline-content:hover {
+  border-color: rgba(0, 255, 213, 0.15);
 }
-.exp-header h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
+.timeline-badge {
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  opacity: 0.8;
 }
-.exp-period {
-  color: var(--text-dim);
-  font-size: 0.85rem;
-  margin-bottom: 1.5rem;
+.timeline-role {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+  font-weight: 600;
 }
-.exp-details {
+.timeline-company {
+  font-weight: 700;
+}
+
+/* — Details List — */
+.timeline-details {
   list-style: none;
   padding: 0;
   margin: 0 0 1.5rem 0;
 }
-.exp-details li {
+.timeline-details li {
   display: flex;
   gap: 0.75rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
   color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.7;
+  font-size: 0.92rem;
+  line-height: 1.75;
 }
-.bullet {
+.timeline-details li:last-child {
+  margin-bottom: 0;
+}
+.timeline-bullet {
   flex-shrink: 0;
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
   font-size: 1rem;
 }
-.exp-tech {
+
+/* — Tech Badges — */
+.timeline-tech {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
+/* ========= RESPONSIVE ========= */
 @media (max-width: 768px) {
-  .exp-layout {
-    grid-template-columns: 1fr;
+  .timeline {
+    padding-left: 2rem;
   }
-  .exp-tabs {
-    flex-direction: row;
-    border-left: none;
-    border-bottom: 2px solid var(--border-subtle);
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  .timeline-node {
+    left: -2rem;
   }
-  .tab-indicator {
-    left: 0;
-    top: auto;
-    bottom: -2px;
-    width: 100%;
-    height: 2px;
+  .timeline-content {
+    padding: 1.5rem;
+  }
+  .timeline-role {
+    font-size: 1.1rem;
+  }
+}
+@media (max-width: 480px) {
+  .timeline-line {
+    left: 12px;
+  }
+  .timeline {
+    padding-left: 1.5rem;
+  }
+  .timeline-node {
+    left: -1.5rem;
+  }
+  .timeline-dot {
+    width: 10px;
+    height: 10px;
   }
 }

@@ -1,42 +1,96 @@
+/* ========= ABOUT SECTION ========= */
 .about-layout {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1.1fr 1fr;
   gap: 4rem;
   align-items: start;
 }
-.about-text {
-  font-size: 1.05rem;
+
+/* — Terminal-style Bio — */
+.about-terminal {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+.about-terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.2rem;
+  background: rgba(255, 255, 255, 0.015);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+.about-terminal-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--accent-green);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--accent-green);
+}
+.about-terminal-body {
+  padding: 1.75rem 2rem;
+}
+.about-terminal-body p {
+  font-size: 1rem;
   color: var(--text-secondary);
   line-height: 1.9;
+  margin-bottom: 1.25rem;
 }
-.about-text p {
-  margin-bottom: 1.5rem;
+.about-terminal-body p:last-child {
+  margin-bottom: 0;
 }
+
+/* — Bento Cards Grid — */
 .about-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 0.9rem;
 }
 .about-card {
-  padding: 1.5rem;
-  text-align: center;
+  padding: 1.4rem;
+  text-align: left;
+  position: relative;
+  cursor: default;
+}
+.about-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--card-accent);
+  border-radius: 0 0 2px 2px;
+  transition: height var(--t-normal) var(--ease-out);
+}
+.about-card:hover::after {
+  height: 100%;
 }
 .about-card-icon {
-  font-size: 1.8rem;
-  color: var(--accent-cyan);
+  font-size: 1.5rem;
   margin-bottom: 0.75rem;
+  transition: transform var(--t-fast) var(--ease-spring);
+}
+.about-card:hover .about-card-icon {
+  transform: scale(1.15);
 }
 .about-card h4 {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
 }
 .about-card p {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   color: var(--text-dim);
   line-height: 1.6;
+  letter-spacing: 0.01em;
 }
 
+/* ========= RESPONSIVE ========= */
 @media (max-width: 992px) {
   .about-layout {
     grid-template-columns: 1fr;
@@ -46,5 +100,8 @@
 @media (max-width: 480px) {
   .about-cards {
     grid-template-columns: 1fr;
+  }
+  .about-terminal-body {
+    padding: 1.25rem 1.5rem;
   }
 }

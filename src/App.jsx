@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -7,7 +7,7 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import MatrixRain from './components/MatrixRain';
+import ParticleField from './components/ParticleField';
 import './styles/index.css';
 
 function App() {
@@ -20,10 +20,13 @@ function App() {
         }
       });
     };
-    const observer = new IntersectionObserver(observerCallback, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    
+    const observer = new IntersectionObserver(observerCallback, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -40px 0px',
+    });
+
     const setupObserver = () => {
-      document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
         observer.observe(el);
       });
     };
@@ -39,7 +42,7 @@ function App() {
 
   return (
     <>
-      <MatrixRain />
+      <ParticleField />
       <Navbar />
       <main>
         <Hero />

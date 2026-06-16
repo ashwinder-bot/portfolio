@@ -1,64 +1,105 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import './Projects.css';
 
 const projects = [
   {
+    title: 'DrowsiGuard AI',
+    subtitle: 'Driver Fatigue Detection',
+    description: 'Real-time driver drowsiness detection using a unique Tri-Channel Architecture — CNN + Mouth Aspect Ratio + 3D Head Pose estimation. Overcomes standard eye-tracking limitations (sunglasses, lighting) with multi-modal sensor fusion.',
+    tech: ['Python', 'PyTorch', 'OpenCV', 'dlib', 'CNN'],
+    github: 'https://github.com/ashwinder-bot/sunglasses-driver-drowsiness',
+    accent: '#00ffd5',
+    category: 'ai',
+    featured: true,
+    size: 'large',
+  },
+  {
+    title: 'Tender Copilot',
+    subtitle: 'AI-Powered Tender Analysis',
+    description: 'RAG-based tender analysis platform using OpenAI embeddings and ChromaDB for semantic search across 100+ tender documents. FastAPI backend with full observability stack (Prometheus, Grafana, Loki).',
+    tech: ['FastAPI', 'OpenAI', 'ChromaDB', 'Docker', 'Prometheus'],
+    github: 'https://github.com/ashwinder-bot/tender-copilot',
+    accent: '#8b5cf6',
+    category: 'ai',
+    featured: true,
+    size: 'medium',
+  },
+  {
     title: 'MindWell',
     subtitle: 'Mental Health Platform',
-    description: 'Full-stack mental health platform with 3 role-based dashboards (Counselor/Admin/Student). Integrated Supabase and shipped an NLP-based AI stress detection engine surfacing personalized counselor suggestions.',
+    description: 'Full-stack mental health platform with 3 role-based dashboards. Integrated Supabase auth and shipped an NLP-based AI stress detection engine surfacing personalized counselor suggestions.',
     tech: ['Next.js', 'TypeScript', 'FastAPI', 'Supabase', 'PostgreSQL'],
-    github: 'https://github.com/ashwinder-bot/mindwell',
-    accent: '#00ffd5',
+    github: 'https://github.com/ashwinder-bot/mental-health-system',
+    accent: '#3b82f6',
+    category: 'fullstack',
     featured: true,
+    size: 'medium',
   },
   {
     title: 'Stock Market Dashboard',
     subtitle: 'Real-time Financial Analytics',
-    description: 'Real-time stock analysis dashboard consuming yfinance API, exposing live OHLCV data and technical indicators for 500+ tickers. Containerized with Docker and deployed on Render/Vercel with 99%+ uptime.',
+    description: 'Real-time stock analysis dashboard consuming yfinance API, exposing live OHLCV data and technical indicators for 500+ tickers. Containerized with Docker and deployed with 99%+ uptime.',
     tech: ['React.js', 'FastAPI', 'yfinance', 'Docker', 'Vercel'],
     github: 'https://github.com/ashwinder-bot/stock-market-dashboard',
-    accent: '#0088ff',
+    accent: '#f97316',
+    category: 'fullstack',
     featured: true,
+    size: 'large',
   },
   {
     title: 'Payment Fraud Detection',
     subtitle: 'ML Security System',
-    description: 'Trained Random Forest and XGBoost classifiers on 6M+ transactions with SMOTE for class imbalance, achieving 96%+ ROC-AUC. End-to-end ML pipeline with feature engineering and evaluation.',
-    tech: ['Python', 'Scikit-learn', 'XGBoost', 'Pandas', 'Matplotlib'],
+    description: 'Trained Random Forest and XGBoost classifiers on 6M+ transactions with SMOTE for class imbalance, achieving 96%+ ROC-AUC. End-to-end ML pipeline with feature engineering.',
+    tech: ['Python', 'Scikit-learn', 'XGBoost', 'Pandas'],
     github: 'https://github.com/ashwinder-bot/ONLINE-PAYMENT-FRAUD-DETECTION',
-    accent: '#7b61ff',
-    featured: true,
+    accent: '#ec4899',
+    category: 'ai',
   },
   {
-    title: 'Event Management System',
+    title: 'Jurisly',
+    subtitle: 'Legal Consultation Platform',
+    description: 'Comprehensive platform to make legal advice accessible and reliable. Built with TypeScript and modern web technologies for a smooth user experience.',
+    tech: ['TypeScript', 'React', 'Node.js'],
+    github: 'https://github.com/ashwinder-bot/JURISLY-THE-LEGAL-CONSULTATION',
+    accent: '#10b981',
+    category: 'fullstack',
+  },
+  {
+    title: 'AI Voice Detection',
+    subtitle: 'Voice Analysis System',
+    description: 'AI-powered voice analysis and detection system using Python machine learning libraries for real-time audio processing and classification.',
+    tech: ['Python', 'ML', 'Audio Processing'],
+    github: 'https://github.com/ashwinder-bot/ai-voice-detection',
+    accent: '#a855f7',
+    category: 'ai',
+  },
+  {
+    title: 'Event Management',
     subtitle: 'Bennett University',
-    description: 'Comprehensive event management system with real-time event tracking and registration, interactive club management dashboard, and a beautiful responsive UI.',
+    description: 'Comprehensive event management system with real-time event tracking, registration, interactive club management dashboard, and responsive UI.',
     tech: ['JavaScript', 'HTML/CSS'],
     github: 'https://github.com/ashwinder-bot/EVENT-MANAGMENT',
-    accent: '#ff3d8e',
-  },
-  {
-    title: 'Mental Health System',
-    subtitle: 'Admin Dashboard',
-    description: 'Digital Mental Health Admin Dashboard using FastAPI and Supabase. Handles admin management, user profiles, and secure data access for the mental health platform.',
-    tech: ['TypeScript', 'FastAPI', 'Supabase'],
-    github: 'https://github.com/ashwinder-bot/mental-health-system',
-    accent: '#ff7b00',
-  },
-  {
-    title: 'Grocery Management',
-    subtitle: 'Desktop Application',
-    description: 'Desktop-based Grocery Management System built using Python (Tkinter) and SQL for database management, designed to help businesses manage inventory efficiently.',
-    tech: ['Python', 'Tkinter', 'SQL'],
-    github: 'https://github.com/ashwinder-bot/GROCERY-MANAGMENT-SYSTEM',
-    accent: '#00ff88',
+    accent: '#ef4444',
+    category: 'fullstack',
   },
 ];
 
+const filters = [
+  { label: 'All', value: 'all' },
+  { label: 'AI / ML', value: 'ai' },
+  { label: 'Full Stack', value: 'fullstack' },
+];
+
 const Projects = () => {
-  const featured = projects.filter(p => p.featured);
-  const other = projects.filter(p => !p.featured);
+  const [activeFilter, setActiveFilter] = useState('all');
+
+  const filtered = activeFilter === 'all'
+    ? projects
+    : projects.filter(p => p.category === activeFilter);
+
+  const featured = filtered.filter(p => p.featured);
+  const other = filtered.filter(p => !p.featured);
 
   return (
     <section id="projects">
@@ -66,50 +107,93 @@ const Projects = () => {
         <div className="section-header reveal">
           <p className="section-label">Projects</p>
           <h2 className="section-title">What I've Built</h2>
-          <p className="section-desc">A selection of projects that demonstrate my ability to ship production-grade systems.</p>
+          <p className="section-desc">
+            Production-grade systems spanning AI/ML, backend engineering, and full-stack development.
+          </p>
         </div>
 
-        {/* Featured Projects */}
-        <div className="featured-projects">
-          {featured.map((project, index) => (
-            <div key={index} className={`featured-card glass-card reveal ${index % 2 === 1 ? 'reverse' : ''}`} style={{ transitionDelay: `${index * 0.15}s` }}>
-              <div className="featured-accent" style={{ background: project.accent }}></div>
-              <div className="featured-content">
-                <p className="featured-label mono" style={{ color: project.accent }}>Featured Project</p>
-                <h3 className="featured-title">{project.title}</h3>
-                <p className="featured-subtitle">{project.subtitle}</p>
-                <p className="featured-desc">{project.description}</p>
-                <div className="featured-tech">
-                  {project.tech.map((t, idx) => (
-                    <span key={idx} className="badge">{t}</span>
-                  ))}
-                </div>
-                <div className="featured-links">
-                  <a href={project.github} target="_blank" rel="noreferrer" className="project-link"><FaGithub /> Code</a>
-                </div>
-              </div>
-            </div>
+        {/* Filter Chips */}
+        <div className="project-filters reveal" style={{ transitionDelay: '0.1s' }}>
+          {filters.map(f => (
+            <button
+              key={f.value}
+              className={`filter-chip ${activeFilter === f.value ? 'active' : ''}`}
+              onClick={() => setActiveFilter(f.value)}
+            >
+              {f.label}
+            </button>
           ))}
         </div>
+
+        {/* Featured Bento Grid */}
+        {featured.length > 0 && (
+          <div className="bento-grid">
+            {featured.map((project, index) => (
+              <div
+                key={project.title}
+                className={`bento-card glass-card reveal ${project.size === 'large' ? 'bento-large' : 'bento-medium'}`}
+                style={{ transitionDelay: `${index * 0.1}s`, '--project-accent': project.accent }}
+              >
+                <div className="bento-glow"></div>
+                <div className="bento-content">
+                  <div className="bento-top">
+                    <span className="bento-label mono" style={{ color: project.accent }}>
+                      Featured Project
+                    </span>
+                    <a href={project.github} target="_blank" rel="noreferrer" className="bento-github-link" aria-label="GitHub">
+                      <FaGithub />
+                    </a>
+                  </div>
+                  <h3 className="bento-title">{project.title}</h3>
+                  <p className="bento-subtitle">{project.subtitle}</p>
+                  <p className="bento-desc">{project.description}</p>
+                  <div className="bento-tech">
+                    {project.tech.map((t, idx) => (
+                      <span key={idx} className="badge">{t}</span>
+                    ))}
+                  </div>
+                  <a href={project.github} target="_blank" rel="noreferrer" className="bento-link mono">
+                    <FaGithub /> View Code
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 12l8-8M4 4h8v8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </a>
+                </div>
+                {/* Accent gradient line */}
+                <div className="bento-accent-line" style={{ background: project.accent }}></div>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Other Projects */}
-        <h3 className="other-heading reveal">Other Noteworthy Projects</h3>
-        <div className="other-projects">
-          {other.map((project, index) => (
-            <div key={index} className="other-card glass-card reveal" style={{ transitionDelay: `${index * 0.1}s` }}>
-              <div className="other-top">
-                <div className="other-icon" style={{ color: project.accent }}>📁</div>
-                <a href={project.github} target="_blank" rel="noreferrer" className="other-link"><FaGithub /></a>
-              </div>
-              <h4>{project.title}</h4>
-              <p className="other-subtitle">{project.subtitle}</p>
-              <p className="other-desc">{project.description}</p>
-              <div className="other-tech mono">
-                {project.tech.join(' · ')}
-              </div>
+        {other.length > 0 && (
+          <>
+            <h3 className="other-heading reveal">Other Noteworthy Projects</h3>
+            <div className="other-grid">
+              {other.map((project, index) => (
+                <div
+                  key={project.title}
+                  className="other-card glass-card reveal"
+                  style={{ transitionDelay: `${index * 0.08}s`, '--project-accent': project.accent }}
+                >
+                  <div className="other-top">
+                    <div className="other-folder" style={{ color: project.accent }}>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </div>
+                    <a href={project.github} target="_blank" rel="noreferrer" className="other-link" aria-label="GitHub">
+                      <FaGithub />
+                    </a>
+                  </div>
+                  <h4>{project.title}</h4>
+                  <p className="other-subtitle">{project.subtitle}</p>
+                  <p className="other-desc">{project.description}</p>
+                  <div className="other-tech mono">
+                    {project.tech.join(' · ')}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </>
+        )}
       </div>
     </section>
   );

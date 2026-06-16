@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Experience.css';
 
 const experiences = [
@@ -23,7 +23,7 @@ const experiences = [
     company: 'Swastik IT Solutions',
     period: 'Oct 2025 – Dec 2025',
     type: 'Remote',
-    color: '#0088ff',
+    color: '#3b82f6',
     details: [
       'Delivered 8+ RESTful APIs with Node.js/Express.js for Next.js clients; implemented middleware layers for auth, input validation, and centralized error handling.',
       'Modeled and optimized MongoDB schemas for persistent data storage, improving query performance across 3+ high-frequency endpoints.',
@@ -36,7 +36,7 @@ const experiences = [
     company: 'Raahi — Carpooling App',
     period: 'Jul 2025 – Aug 2025',
     type: 'Remote',
-    color: '#7b61ff',
+    color: '#8b5cf6',
     details: [
       'Secured authentication system using Firebase Auth and JWT with role-based access control via Node.js/Express.js, supporting 2 user roles (driver/passenger).',
       'Integrated Google Maps API for real-time route calculation and ride matching, reducing average route lookup latency to under 300ms.',
@@ -46,10 +46,6 @@ const experiences = [
 ];
 
 const Experience = () => {
-  const [activeExp, setActiveExp] = useState('cognecto');
-
-  const active = experiences.find(e => e.id === activeExp);
-
   return (
     <section id="experience">
       <div className="container">
@@ -58,42 +54,46 @@ const Experience = () => {
           <h2 className="section-title">Where I've Worked</h2>
         </div>
 
-        <div className="exp-layout reveal" style={{ transitionDelay: '0.2s' }}>
-          {/* Tab Selector */}
-          <div className="exp-tabs">
-            {experiences.map(exp => (
-              <button
-                key={exp.id}
-                className={`exp-tab ${activeExp === exp.id ? 'active' : ''}`}
-                onClick={() => setActiveExp(exp.id)}
-                style={{ '--tab-color': exp.color }}
-              >
-                <span className="tab-indicator" style={{ background: exp.color }}></span>
-                {exp.company.split(' — ')[0]}
-              </button>
-            ))}
-          </div>
+        <div className="timeline">
+          <div className="timeline-line"></div>
+          {experiences.map((exp, idx) => (
+            <div
+              key={exp.id}
+              className="timeline-item reveal"
+              style={{ transitionDelay: `${idx * 0.15}s` }}
+            >
+              {/* Timeline node */}
+              <div className="timeline-node" style={{ '--node-color': exp.color }}>
+                <div className="timeline-dot"></div>
+              </div>
 
-          {/* Content */}
-          <div className="exp-content glass-card" key={active.id}>
-            <div className="exp-header">
-              <h3>{active.role} <span style={{ color: active.color }}>@ {active.company}</span></h3>
-              <p className="exp-period mono">{active.period} · {active.type}</p>
+              {/* Content */}
+              <div className="timeline-content glass-card">
+                <div className="timeline-badge mono" style={{ color: exp.color }}>
+                  {exp.period} · {exp.type}
+                </div>
+                <h3 className="timeline-role">
+                  {exp.role}{' '}
+                  <span className="timeline-company" style={{ color: exp.color }}>
+                    @ {exp.company}
+                  </span>
+                </h3>
+                <ul className="timeline-details">
+                  {exp.details.map((detail, i) => (
+                    <li key={i}>
+                      <span className="timeline-bullet" style={{ color: exp.color }}>▹</span>
+                      <span>{detail}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="timeline-tech">
+                  {exp.tech.map((t, i) => (
+                    <span key={i} className="badge">{t}</span>
+                  ))}
+                </div>
+              </div>
             </div>
-            <ul className="exp-details">
-              {active.details.map((detail, idx) => (
-                <li key={idx}>
-                  <span className="bullet" style={{ color: active.color }}>▹</span>
-                  {detail}
-                </li>
-              ))}
-            </ul>
-            <div className="exp-tech">
-              {active.tech.map((t, idx) => (
-                <span key={idx} className="badge">{t}</span>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

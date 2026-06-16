@@ -1,35 +1,71 @@
+/* ========= CONTACT SECTION ========= */
+.contact-wrapper {
+  text-align: center;
+}
+
+/* — Header — */
+.contact-header {
+  max-width: 600px;
+  margin: 0 auto 3.5rem;
+}
+.contact-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.contact-desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* — Grid — */
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
-  max-width: 800px;
+  gap: 1rem;
+  max-width: 850px;
   margin: 0 auto;
 }
 .contact-card {
-  padding: 1.75rem;
+  padding: 2rem 1.5rem;
   text-align: center;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 .contact-card:hover {
-  border-color: var(--accent-cyan);
+  border-color: rgba(0, 255, 213, 0.2);
 }
-.contact-icon {
+.contact-card-icon {
   font-size: 1.8rem;
   color: var(--accent-cyan);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.25rem;
+  transition: transform var(--t-fast) var(--ease-spring);
+}
+.contact-card:hover .contact-card-icon {
+  transform: scale(1.15) translateY(-3px);
 }
 .contact-card h4 {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 .contact-card p {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--text-dim);
   word-break: break-all;
 }
+
+/* — Location — */
 .contact-location {
   display: flex;
   align-items: center;
@@ -37,9 +73,15 @@
   gap: 0.5rem;
   margin-top: 2rem;
   color: var(--text-dim);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 
+/* — CTA Button — */
+.contact-cta {
+  margin-top: 2.5rem;
+}
+
+/* ========= RESPONSIVE ========= */
 @media (max-width: 768px) {
   .contact-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -48,5 +90,8 @@
 @media (max-width: 480px) {
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+  .contact-title {
+    font-size: 2rem;
   }
 }

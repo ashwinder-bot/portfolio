@@ -6,41 +6,55 @@ const Contact = () => {
   return (
     <section id="contact">
       <div className="container">
-        <div className="contact-wrapper reveal">
-          <div className="section-header" style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto 3rem' }}>
+        <div className="contact-wrapper">
+          {/* CTA Header */}
+          <div className="contact-header reveal">
             <p className="section-label" style={{ justifyContent: 'center' }}>Contact</p>
-            <h2 className="section-title">Let's Connect</h2>
-            <p className="section-desc" style={{ margin: '0 auto' }}>
+            <h2 className="contact-title">
+              Let's Build<br />
+              <span className="gradient-text">Something Together</span>
+            </h2>
+            <p className="contact-desc">
               I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
             </p>
           </div>
 
-          <div className="contact-grid">
-            <a href="mailto:singhashwinder19@gmail.com" className="contact-card glass-card">
-              <FaEnvelope className="contact-icon" />
+          {/* Contact Cards */}
+          <div className="contact-grid reveal" style={{ transitionDelay: '0.15s' }}>
+            <a href="mailto:singhashwinder19@gmail.com" className="contact-card glass-card" id="contact-email">
+              <div className="contact-card-icon"><FaEnvelope /></div>
               <h4>Email</h4>
               <p className="mono">singhashwinder19@gmail.com</p>
             </a>
-            <a href="https://www.linkedin.com/in/ashwindersingh-dev/" target="_blank" rel="noreferrer" className="contact-card glass-card">
-              <FaLinkedin className="contact-icon" />
+            <a href="https://www.linkedin.com/in/ashwindersingh-dev/" target="_blank" rel="noreferrer" className="contact-card glass-card" id="contact-linkedin">
+              <div className="contact-card-icon" style={{ color: '#3b82f6' }}><FaLinkedin /></div>
               <h4>LinkedIn</h4>
               <p className="mono">ashwindersingh-dev</p>
             </a>
-            <a href="https://github.com/ashwinder-bot" target="_blank" rel="noreferrer" className="contact-card glass-card">
-              <FaGithub className="contact-icon" />
+            <a href="https://github.com/ashwinder-bot" target="_blank" rel="noreferrer" className="contact-card glass-card" id="contact-github">
+              <div className="contact-card-icon" style={{ color: '#e8e6f0' }}><FaGithub /></div>
               <h4>GitHub</h4>
               <p className="mono">ashwinder-bot</p>
             </a>
-            <a href="tel:+918290735220" className="contact-card glass-card">
-              <FaPhone className="contact-icon" />
+            <a href="tel:+918290735220" className="contact-card glass-card" id="contact-phone">
+              <div className="contact-card-icon" style={{ color: '#10b981' }}><FaPhone /></div>
               <h4>Phone</h4>
               <p className="mono">+91 8290735220</p>
             </a>
           </div>
 
-          <div className="contact-location reveal" style={{ transitionDelay: '0.3s' }}>
+          {/* Location */}
+          <div className="contact-location reveal" style={{ transitionDelay: '0.25s' }}>
             <FaMapMarkerAlt />
             <span>Bennett University, Greater Noida, UP, India</span>
+          </div>
+
+          {/* CTA Button */}
+          <div className="contact-cta reveal" style={{ transitionDelay: '0.3s' }}>
+            <a href="mailto:singhashwinder19@gmail.com" className="btn btn-primary">
+              <FaEnvelope />
+              Say Hello
+            </a>
           </div>
         </div>
       </div>
