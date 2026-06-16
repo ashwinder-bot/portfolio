@@ -25,6 +25,18 @@
   color: var(--accent-cyan);
   box-shadow: 0 0 15px rgba(0, 255, 213, 0.08);
 }
+.filter-count {
+  font-size: 0.65rem;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.1rem 0.45rem;
+  border-radius: var(--radius-full);
+  margin-left: 0.3rem;
+  color: var(--text-dim);
+}
+.filter-chip.active .filter-count {
+  background: rgba(0, 255, 213, 0.12);
+  color: var(--accent-cyan);
+}
 
 /* ========= BENTO GRID ========= */
 .bento-grid {

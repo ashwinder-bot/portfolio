@@ -37,34 +37,26 @@
 /* — Logo — */
 .nav-logo {
   text-decoration: none;
-  font-family: var(--font-mono);
-  font-size: 1.1rem;
-  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   transition: all var(--t-fast);
-  letter-spacing: -0.01em;
 }
 .nav-logo:hover {
-  transform: scale(1.03);
+  transform: scale(1.08);
 }
-.nav-logo:hover .logo-dot {
-  box-shadow: 0 0 12px var(--accent-cyan), 0 0 24px rgba(0, 255, 213, 0.2);
-  transform: scale(1.2);
-}
-.logo-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+.logo-symbol {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
   background: var(--gradient-main);
-  flex-shrink: 0;
-  transition: all var(--t-fast) var(--ease-spring);
-  box-shadow: 0 0 8px rgba(0, 255, 213, 0.3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: all var(--t-fast) var(--ease-smooth);
+  letter-spacing: -0.02em;
 }
-.logo-name {
-  color: var(--text-primary);
-  font-size: 1.1rem;
+.nav-logo:hover .logo-symbol {
+  filter: drop-shadow(0 0 8px rgba(0, 255, 213, 0.5));
 }
 
 /* — Nav Links — */

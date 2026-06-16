@@ -49,8 +49,7 @@ const Navbar = () => {
         <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }}></div>
         <div className="container nav-inner">
           <a href="#" className="nav-logo">
-            <span className="logo-dot"></span>
-            <span className="logo-name">ashwinder</span>
+            <span className="logo-symbol">&lt;/&gt;</span>
           </a>
 
           <ul className="nav-links">
